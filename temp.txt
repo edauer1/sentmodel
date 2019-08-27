@@ -1,0 +1,4 @@
+1,"Kids chew gum."
+2,"They cooked fudge."
+3,"Darkness fell."
+4,"Cake is rich."

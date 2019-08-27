@@ -1,1 +1,1 @@
-{printf "%d ,\" %s\"",NR,$0}
+{print "3G,"NR","$0}

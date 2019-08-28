@@ -8,10 +8,6 @@ temp <-read_csv('3gsent.csv',col_names = FALSE, col_types = cols("c","i","c"))
 
 temp2<- unnest_tokens(temp, word, X3)
 
-foo<-group_by(temp2, X2) %>% 
-  +     summarize(text = str_c(word, collapse = " ")) %>%
-  +     ungroup()
-
 
 subtl <- new.env(hash = TRUE, parent = emptyenv())
 
@@ -41,5 +37,14 @@ f <- function(x){
 exists_subtl <- Vectorize(exists, vectorize.args = "x")
 
 
+get_subtl <- Vectorize(get,vectorize.args="x")
 
-apply(temp2,1,f)
+temp2$test <-as.numeric(apply(temp2,1,f))
+
+
+
+foo <- temp2 %>% 
+  group_by(X2) %>% 
+  summarize(text = str_c(word, collapse = " "),mnfrq = mean(test,na.rm = TRUE)) %>%
+  ungroup()
+

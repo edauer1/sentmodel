@@ -1,17 +1,26 @@
 library(tidyverse)
 library(tidytext)
 
+#read in the sentence list
 temp <-read_csv('3gsent.csv',col_names = FALSE, col_types = cols("c","i","c"))
-#reset to sentences
 
-#transform to word level tokens
-
+#transform to word level tokens in tidytext where word is the unit of observation
 temp2<- unnest_tokens(temp, word, X3)
 
 
+# create a new environment for holding a hash table 
 subtl <- new.env(hash = TRUE, parent = emptyenv())
 
+
+
+
+templ <-read_csv('gvpinsurfphlex2016.csv', col_names= c("Orth","KFr","Phon","GVLEC","GVLECsz"),  col_types = cols("c","n","c","c","n"))
+
+
 # read in a paired list file and create a hash for lookup
+
+
+
 
 tempf <-read_csv('SUBTLus.csv',col_names = FALSE, col_types = cols("c","n"))
 ltempf = nrow(tempf)

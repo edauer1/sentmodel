@@ -14,7 +14,7 @@ subtl <- new.env(hash = TRUE, parent = emptyenv())
 
 
 
-templ <-read_csv('gvpinsurfphlex2016.csv', col_names= c("Orth","KFr","Phon","GVLEC","GVLECsz"),  col_types = cols("c","n","c","c","n"))
+templ <-read_csv('gvplex.csv', col_names= c("Orth","KFr","Phon","GVLEC","GVLECsz","syllGt1"),  col_types = cols("c","n","c","c","n","n"))
 
 
 # read in a paired list file and create a hash for lookup

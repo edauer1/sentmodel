@@ -1,0 +1,9 @@
+BEGIN{
+	while(getline<"SUBTLus.tmp">0){
+        	trans[$1] = $2
+		print $1,trans[$1]
+		}
+}
+{
+print trans[tolower($1)] 
+}

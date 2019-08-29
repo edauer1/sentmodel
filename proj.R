@@ -1,11 +1,6 @@
 library(tidyverse)
 library(tidytext)
 
-#read in the sentence list
-temp <-read_csv('3gsent.csv',col_names = FALSE, col_types = cols("c","i","c"))
-
-#transform to word level tokens in tidytext where word is the unit of observation
-temp2<- unnest_tokens(temp, word, X3)
 
 
 # create a new environment for holding a hash table 
@@ -14,7 +9,7 @@ subtl <- new.env(hash = TRUE, parent = emptyenv())
 
 
 
-templ <-read_csv('gvplex.csv', col_names= c("Orth","KFr","Phon","GVLEC","GVLECsz","syllGt1"),  col_types = cols("c","n","c","c","n","n"))
+templ <-read_csv('gvplex2019.csv', col_names= c("Orth","KFr","Phon","GVLEC","GVLECsz","syllGt1","subtlex"),  col_types = cols("c","n","c","c","n","n","n"))
 
 
 # read in a paired list file and create a hash for lookup
@@ -22,7 +17,7 @@ templ <-read_csv('gvplex.csv', col_names= c("Orth","KFr","Phon","GVLEC","GVLECsz
 
 
 
-tempf <-read_csv('SUBTLus.csv',col_names = FALSE, col_types = cols("c","n"))
+tempf <-read_csv('gvp.csv',col_names = FALSE, col_types = cols("c","n"))
 ltempf = nrow(tempf)
 for(i in 1:ltempf)
 {
@@ -44,9 +39,14 @@ f <- function(x){
 }
 
 exists_subtl <- Vectorize(exists, vectorize.args = "x")
-
-
 get_subtl <- Vectorize(get,vectorize.args="x")
+
+#read in the sentence list
+temp <-read_csv('3gsent.csv',col_names = FALSE, col_types = cols("c","i","c"))
+
+#transform to word level tokens in tidytext where word is the unit of observation
+temp2<- unnest_tokens(temp, word, X3)
+
 
 temp2$test <-as.numeric(apply(temp2,1,f))
 
